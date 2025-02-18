@@ -302,6 +302,7 @@ async function initializeAfterAppReady() {
     const defaultSession = session.defaultSession;
 
     if (process.platform !== 'darwin') {
+        defaultSession.allowNTLMCredentialsForDomains('*');
         defaultSession.on('spellcheck-dictionary-download-failure', (event, lang) => {
             if (Config.spellCheckerURL) {
                 log.error(`There was an error while trying to load the dictionary definitions for ${lang} from fully the specified url. Please review you have access to the needed files. Url used was ${Config.spellCheckerURL}`);
